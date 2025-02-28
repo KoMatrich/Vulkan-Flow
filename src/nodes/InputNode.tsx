@@ -10,6 +10,7 @@ export function InputNode({ data }: NodeProps<InputNode>) {
         () => console.log("Input Node Double Clicked:", data.label)
     );
 
+    data['outputType'] = 'string';
     return (
         <div onClick={handleClick} onDoubleClick={handleDoubleClick} className="border p-2 rounded bg-gray-100">
             <div>Input</div>
