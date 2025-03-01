@@ -1,4 +1,6 @@
-import { Node, Edge, Connection, addEdge } from "@xyflow/react";
+import {addEdge, Connection, Edge, Node} from "@xyflow/react";
+import React from "react";
+import {Type2Color} from "../type2Colors.ts";
 
 export const onConnectHandler = (
     params: Connection,
@@ -25,6 +27,11 @@ export const onConnectHandler = (
         alert('Invalid connection! Output type does not match input type');
         return;
     }
+
+    // set edge color based on type
+    params['animated'] = true;
+    params['type'] = outputType;
+    params['style'] = {stroke: Type2Color(outputType)};
 
     setEdges((eds) => addEdge(params, eds));
 };

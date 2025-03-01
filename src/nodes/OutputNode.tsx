@@ -1,14 +1,26 @@
 import {Handle, type Node, type NodeProps, Position} from "@xyflow/react";
+import {Type2Color} from "../type2Colors.ts";
 
-export type OutputNode = Node<{ label?: string }, "output">;
+export type OutputNode = Node<{ inputType?: string }, "output">;
 
 export function OutputNode({data}: NodeProps<OutputNode>) {
-    data['inputType'] = 'number';
+    const inputColor = Type2Color(data.inputType);
+
     return (
-        <div>
+        <div
+            className="react-flow__node-default"
+        >
             <div>Output</div>
-            {data.label && <div>{data.label}</div>}
-            <Handle type="target" position={Position.Top}/>
+
+            {/* Target Handle (Input - Outlined) */}
+            <Handle
+                type="target"
+                position={Position.Top}
+                style={{
+                    backgroundColor: "transparent",
+                    border: `1px solid ${inputColor}`, // Outlined handle for input
+                }}
+            />
         </div>
     );
 }

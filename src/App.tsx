@@ -1,19 +1,8 @@
 import React from "react";
-import {
-    addEdge,
-    Background,
-    Connection,
-    Controls,
-    Edge,
-    MiniMap,
-    Node,
-    ReactFlow,
-    useEdgesState,
-    useNodesState,
-} from "@xyflow/react";
+import {Background, Connection, Controls, MiniMap, ReactFlow, useEdgesState, useNodesState,} from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { initialNodes, nodeTypes } from "./nodes";
-import { edgeTypes, initialEdges } from "./edges";
+import {initialNodes, nodeTypes} from "./nodes";
+import {edgeTypes, initialEdges} from "./edges";
 import {onNodeContextMenuHandler} from "./handlers/onNodeContextMenuHandler.ts";
 import {onEdgeContextMenuHandler} from "./handlers/onEdgeContextMenuHandler.ts";
 import {onConnectHandler} from "./handlers/onConnectHandler.ts";
@@ -39,9 +28,9 @@ export default function App() {
             onConnect={onConnect}
             fitView
         >
-            <Background />
-            <MiniMap />
-            <Controls />
+            <Background/>
+            <MiniMap/>
+            <Controls/>
         </ReactFlow>
     );
 }
