@@ -5,6 +5,6 @@ const type2Color: Record<string, string> = {
     default: "#95a5a6", // Gray
 };
 
-export function Type2Color(type?: string) {
+export function Type2Color(type?: unknown) {
     return type2Color[type] ?? type2Color.default;
 }

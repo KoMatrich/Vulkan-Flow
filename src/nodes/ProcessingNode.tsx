@@ -29,6 +29,7 @@ export function ProcessingNode({data}: NodeProps<ProcessingNode>) {
                 position={Position.Bottom}
                 style={{
                     backgroundColor: outputColor, // Filled handle for output
+                    border: "none"
                 }}
             />
         </div>

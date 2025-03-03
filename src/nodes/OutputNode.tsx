@@ -7,9 +7,7 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
     const inputColor = Type2Color(data.inputType);
 
     return (
-        <div
-            className="react-flow__node-default"
-        >
+        <div>
             <div>Output</div>
 
             {/* Target Handle (Input - Outlined) */}

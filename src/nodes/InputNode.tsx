@@ -15,7 +15,6 @@ export function InputNode({data}: NodeProps<InputNode>) {
 
     return (
         <div
-            className="react-flow__node-default"
             onClick={handleClick}
             onDoubleClick={handleDoubleClick}
         >
@@ -27,6 +26,7 @@ export function InputNode({data}: NodeProps<InputNode>) {
                 position={Position.Bottom}
                 style={{
                     backgroundColor: outputColor, // Filled handle for output
+                    border: "none"
                 }}
             />
         </div>
