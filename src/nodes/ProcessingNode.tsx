@@ -15,6 +15,7 @@ export function ProcessingNode({data}: NodeProps<ProcessingNode>) {
 
             {/* Target Handle (Input - Outlined) */}
             <Handle
+                id={data.inputType}
                 type="target"
                 position={Position.Top}
                 style={{
@@ -25,6 +26,7 @@ export function ProcessingNode({data}: NodeProps<ProcessingNode>) {
 
             {/* Source Handle (Output - Filled) */}
             <Handle
+                id={data.outputType}
                 type="source"
                 position={Position.Bottom}
                 style={{

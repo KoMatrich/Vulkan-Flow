@@ -12,6 +12,7 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
 
             {/* Target Handle (Input - Outlined) */}
             <Handle
+                id={data.inputType}
                 type="target"
                 position={Position.Top}
                 style={{

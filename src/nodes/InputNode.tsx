@@ -1,5 +1,4 @@
 import {Handle, type Node, type NodeProps, Position} from "@xyflow/react";
-import React from "react";
 import {useNodeClickHandlers} from "../handlers/onClick.ts";
 import {Type2Color} from "../type2Colors.ts";
 
@@ -22,6 +21,7 @@ export function InputNode({data}: NodeProps<InputNode>) {
 
             {/* Source Handle (Output - Filled) */}
             <Handle
+                id={data.outputType}
                 type="source"
                 position={Position.Bottom}
                 style={{
