@@ -16,7 +16,7 @@ export function ProcessingNode({data}: NodeProps<ProcessingNode>) {
             <Handle
                 id={data.inputType}
                 type="target"
-                position={Position.Top}
+                position={Position.Left}
                 style={{
                     backgroundColor: "transparent",
                     border: `1px solid ${inputColor}`, // Outlined handle for input
@@ -25,7 +25,7 @@ export function ProcessingNode({data}: NodeProps<ProcessingNode>) {
             <Handle
                 id={data.outputType}
                 type="source"
-                position={Position.Bottom}
+                position={Position.Right}
                 style={{
                     backgroundColor: outputColor, // Filled handle for output
                     border: "none"

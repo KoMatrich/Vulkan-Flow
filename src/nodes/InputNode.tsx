@@ -22,7 +22,7 @@ export function InputNode({data}: NodeProps<InputNode>) {
             <Handle
                 id={data.outputType}
                 type="source"
-                position={Position.Bottom}
+                position={Position.Right}
                 style={{
                     backgroundColor: outputColor, // Filled handle for output
                     border: "none"

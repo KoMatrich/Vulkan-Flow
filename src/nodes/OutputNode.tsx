@@ -13,7 +13,7 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
             <Handle
                 id={data.inputType}
                 type="target"
-                position={Position.Top}
+                position={Position.Left}
                 style={{
                     backgroundColor: "transparent",
                     border: `1px solid ${inputColor}`, // Outlined handle for input
