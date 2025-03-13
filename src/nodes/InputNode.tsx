@@ -19,7 +19,6 @@ export function InputNode({data}: NodeProps<InputNode>) {
         >
             <div>Input</div>
 
-            {/* Source Handle (Output - Filled) */}
             <Handle
                 id={data.outputType}
                 type="source"
@@ -29,6 +28,11 @@ export function InputNode({data}: NodeProps<InputNode>) {
                     border: "none"
                 }}
             />
+
+            <video width="100%" height="100%">
+                <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
+                Your browser does not support the video tag.
+            </video>
         </div>
     );
 }

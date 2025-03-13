@@ -1,9 +1,10 @@
-import type {Node, NodeTypes} from "@xyflow/react";
 import {InputNode} from "./InputNode";
 import {OutputNode} from "./OutputNode";
 import {ProcessingNode} from "./ProcessingNode";
 
-export const initialNodes: Node[] = [
+export type AppNode = InputNode | OutputNode | ProcessingNode;
+
+export const initialNodes: AppNode[] = [
     {
         id: "a", type: "input", position: {x: 0, y: 0},
         data: {
@@ -16,7 +17,7 @@ export const initialNodes: Node[] = [
         position: {x: 100, y: 100},
         data: {
             inputType: "string",
-            outputType: "number"
+            outputType: "number",
         }
     },
     {
@@ -31,4 +32,4 @@ export const nodeTypes = {
     input: InputNode,
     processing: ProcessingNode,
     output: OutputNode,
-} satisfies NodeTypes;
+};

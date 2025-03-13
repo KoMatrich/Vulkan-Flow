@@ -9,8 +9,7 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
     return (
         <div>
             <div>Output</div>
-
-            {/* Target Handle (Input - Outlined) */}
+            
             <Handle
                 id={data.inputType}
                 type="target"
@@ -21,7 +20,7 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
                 }}
             />
 
-            <video width="100%" height="100%" controls>
+            <video width="100%" height="100%">
                 <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
                 Your browser does not support the video tag.
             </video>
