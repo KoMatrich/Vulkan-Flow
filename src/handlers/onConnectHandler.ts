@@ -3,12 +3,12 @@ import React from "react";
 import {Type2Color} from "../type2Colors.ts";
 
 export const onConnectHandler = (
-    params: Connection,
+    connection: Connection,
     nodes: Node[],
     setEdges: React.Dispatch<React.SetStateAction<Edge[]>>
 ) => {
-    const sourceNode = nodes.find((node) => node.id === params.source);
-    const targetNode = nodes.find((node) => node.id === params.target);
+    const sourceNode = nodes.find((node) => node.id === connection.source);
+    const targetNode = nodes.find((node) => node.id === connection.target);
 
     if (!sourceNode || !targetNode) {
         alert('Invalid connection! Missing source or target node');
@@ -29,9 +29,9 @@ export const onConnectHandler = (
     }
 
     // set edge color based on type
-    params['animated'] = true;
-    params['type'] = outputType;
-    params['style'] = {stroke: Type2Color(outputType)};
+    connection['animated'] = true;
+    connection['type'] = outputType;
+    connection['style'] = {stroke: Type2Color(outputType)};
 
-    setEdges((eds) => addEdge(params, eds));
+    setEdges((eds) => addEdge(connection, eds));
 };

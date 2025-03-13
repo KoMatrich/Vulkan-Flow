@@ -25,7 +25,7 @@ export default function App() {
 
     const onNodeContext = (event: React.MouseEvent, node: Node) => onNodeContextMenuHandler(event, node, setNodes);
     const onEdgeContextMenu = (event: React.MouseEvent, edge: Edge) => onEdgeContextMenuHandler(event, edge, setEdges);
-    const onConnect = (params: Connection) => onConnectHandler(params, nodes, setEdges);
+    const onConnect = (connection: Connection) => onConnectHandler(connection, nodes, setEdges);
 
     const updatedEdges = updateEdgeStyles(edges, nodes);
 

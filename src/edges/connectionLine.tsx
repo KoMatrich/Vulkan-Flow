@@ -2,12 +2,12 @@ import {useConnection} from "@xyflow/react";
 import {Type2Color} from "../type2Colors.ts";
 
 export default ({fromX, fromY, toX, toY}) => {
-    const {fromHandle} = useConnection();
+    const {fromHandle: connection} = useConnection();
 
-    const type = fromHandle?.id as string;
+    const type = connection?.id as string;
     const color = Type2Color(type);
 
-    const ioType = fromHandle?.type as string;
+    const ioType = connection?.type as string;
     const fromSource = ioType === "source";
     const fromTarget = ioType === "target";
 

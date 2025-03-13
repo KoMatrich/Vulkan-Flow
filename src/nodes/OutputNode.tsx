@@ -20,6 +20,11 @@ export function OutputNode({data}: NodeProps<OutputNode>) {
                     border: `1px solid ${inputColor}`, // Outlined handle for input
                 }}
             />
+
+            <video width="100%" height="100%" controls>
+                <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
+                Your browser does not support the video tag.
+            </video>
         </div>
     );
 }
