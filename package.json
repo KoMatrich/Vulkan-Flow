@@ -10,6 +10,7 @@
     "@vue-flow/controls": "latest",
     "@vue-flow/core": "latest",
     "@vue-flow/minimap": "latest",
+    "@vue-flow/node-toolbar": "^1.1.1",
     "vue": "^3.5.12"
   },
   "devDependencies": {

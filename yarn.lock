@@ -536,7 +536,7 @@
   resolved "https://registry.npmjs.org/@vue-flow/controls/-/controls-1.1.0.tgz"
   integrity sha512-zxkQbzt0lUf/Nr0PMJAESUL+uih9Fs0+p9i2VoaLceT1Z2VDNTwK/62MmhrQkg429ggQ7aIBOxUToAWpSIVDkQ==
 
-"@vue-flow/core@^1.12.2", "@vue-flow/core@latest":
+"@vue-flow/core@^1.12.2", "@vue-flow/core@^1.23.0", "@vue-flow/core@latest":
   version "1.41.6"
   resolved "https://registry.npmjs.org/@vue-flow/core/-/core-1.41.6.tgz"
   integrity sha512-8zxcGRqiudra0obDMLTg9L89WxdlV0QrDOdyPYOKWDcD/UK5aT0MIL3Br9TF9AJmHW2z8QZq4cmmgroREL0jgQ==
@@ -553,6 +553,11 @@
   dependencies:
     d3-selection "^3.0.0"
     d3-zoom "^3.0.0"
+
+"@vue-flow/node-toolbar@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@vue-flow/node-toolbar/-/node-toolbar-1.1.1.tgz"
+  integrity sha512-vgSnGMLd3FXstdpvC721qcBDzGkPsudmyA8urEP55/EMikCp59klgzPvVULTDxxsew5MdXtTBCumsqOi+PXJdg==
 
 "@vue/compiler-core@3.5.13":
   version "3.5.13"
