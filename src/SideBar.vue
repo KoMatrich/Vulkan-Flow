@@ -13,7 +13,8 @@ function onSave() {
 }
 
 function onRestore() {
-  const flow = JSON.parse(localStorage.getItem(flowKey))
+  const storedFlow = localStorage.getItem(flowKey)
+  const flow = storedFlow ? JSON.parse(storedFlow) : null
 
   if (flow) {
     fromObject(flow)
