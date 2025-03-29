@@ -536,7 +536,7 @@
   resolved "https://registry.npmjs.org/@vue-flow/controls/-/controls-1.1.0.tgz"
   integrity sha512-zxkQbzt0lUf/Nr0PMJAESUL+uih9Fs0+p9i2VoaLceT1Z2VDNTwK/62MmhrQkg429ggQ7aIBOxUToAWpSIVDkQ==
 
-"@vue-flow/core@^1.12.2", "@vue-flow/core@latest":
+"@vue-flow/core@^1.12.2", "@vue-flow/core@^1.23.0", "@vue-flow/core@latest":
   version "1.41.6"
   resolved "https://registry.npmjs.org/@vue-flow/core/-/core-1.41.6.tgz"
   integrity sha512-8zxcGRqiudra0obDMLTg9L89WxdlV0QrDOdyPYOKWDcD/UK5aT0MIL3Br9TF9AJmHW2z8QZq4cmmgroREL0jgQ==
@@ -553,6 +553,11 @@
   dependencies:
     d3-selection "^3.0.0"
     d3-zoom "^3.0.0"
+
+"@vue-flow/node-toolbar@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@vue-flow/node-toolbar/-/node-toolbar-1.1.1.tgz"
+  integrity sha512-vgSnGMLd3FXstdpvC721qcBDzGkPsudmyA8urEP55/EMikCp59klgzPvVULTDxxsew5MdXtTBCumsqOi+PXJdg==
 
 "@vue/compiler-core@3.5.13":
   version "3.5.13"
@@ -2949,9 +2954,9 @@ yaml-eslint-parser@^1.2.1, yaml-eslint-parser@^1.2.3:
     yaml "^2.0.0"
 
 yaml@^2.0.0, yaml@^2.4.2:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/yaml/-/yaml-2.3.1.tgz"
-  integrity sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/yaml/-/yaml-2.7.1.tgz"
+  integrity sha512-10ULxpnOCQXxJvBgxsn9ptjq6uviG/htZKk9veJGhlqn3w/DxQ631zFF+nlQXLwmImeS5amR2dl2U8sg6U9jsQ==
 
 yargs-parser@^21.1.1:
   version "21.1.1"
