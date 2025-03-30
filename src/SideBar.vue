@@ -4,7 +4,7 @@ import useDragAndDrop from './useDnD'
 
 const { onDragStart } = useDragAndDrop()
 
-const { nodes, addNodes, dimensions, toObject, fromObject } = useVueFlow()
+const { toObject, fromObject } = useVueFlow()
 
 const flowKey = 'vue-flow--save-restore'
 

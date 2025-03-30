@@ -1,28 +1,23 @@
 <script lang="ts" setup>
-import { h, ref, markRaw, type Component } from 'vue'
-import { Controls } from '@vue-flow/controls'
-import { MiniMap } from '@vue-flow/minimap'
-import { VueFlow, useVueFlow, type Node, type Edge, Position } from '@vue-flow/core'
-import { NodeToolbar } from '@vue-flow/node-toolbar' // Import NodeToolbar
+import {type Component, markRaw} from 'vue'
+import {Controls} from '@vue-flow/controls'
+import {MiniMap} from '@vue-flow/minimap'
+import {Position, useVueFlow, VueFlow} from '@vue-flow/core'
+import {NodeToolbar} from '@vue-flow/node-toolbar' // Import NodeToolbar
 import DropzoneBackground from './DropzoneBackground.vue'
 import Sidebar from './SideBar.vue'
 import useDragAndDrop from './useDnD'
-import CustomNode from './CustomNode.vue'
-import CustomEdge from './CustomEdge.vue'
+import TypedNode from './TypedNode.vue'
+import TypedEdge from './TypedEdge.vue'
+import {initEdges, initNodes} from "~/initSetup";
 
-const { onConnect, addEdges, onNodeClick, setNodes } = useVueFlow({
+const { onConnect, addEdges, onNodeClick, setNodes, edges, nodes } = useVueFlow({
   defaultEdgeOptions: { type: 'custom' },
   nodeTypes: { 
-    custom: markRaw(CustomNode) as Component
+    custom: markRaw(TypedNode) as Component
   },
-  edgeTypes: { custom: markRaw(CustomEdge) as Component }
+  edgeTypes: { custom: markRaw(TypedEdge) as Component }
 })
-
-const nodes = ref<Node[]>([
-  { id: '1', type: 'input', label: 'Node 1', position: { x: 250, y: 5 }, data: { toolbarVisible: true } },
-  { id: '2', type: 'default', label: 'Node 2', position: { x: 100, y: 100 }, data: { toolbarVisible: true } },
-  { id: '3', type: 'custom', label: 'Node 3', position: { x: 400, y: 100 }, data: { toolbarVisible: true } },
-])
 
 // Handle node click to show toolbar
 onNodeClick(({ node }) => {
@@ -39,21 +34,70 @@ onNodeClick(({ node }) => {
   )
 })
 
-const edges = ref<Edge[]>([
-  { id: 'e1-2', source: '1', target: '2', type: 'custom' },
-  { id: 'e1-3', source: '1', target: '3', animated: true },
-])
-
 const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
 
+function wouldCreateLoop(sourceNodeId: string, targetNodeId: string) {
+  console.log(`Going from ${sourceNodeId} to ${targetNodeId}`);
+
+  if (sourceNodeId === targetNodeId) {
+    console.log('Source and target are the same, loop detected');
+    return true;
+  }
+
+  const visited: Set<string> = new Set();
+
+  function dfs(currentNodeId: string, targetNodeId: string): boolean {
+    if (currentNodeId === targetNodeId) {
+      console.log(`Reached target node ${targetNodeId}, loop detected`);
+      return true;
+    }
+
+    if (visited.has(currentNodeId)) {
+      console.log(`Node ${currentNodeId} already visited, skipping`);
+      return false;
+    }
+    visited.add(currentNodeId);
+
+    const outgoingEdges = edges.value.filter(edge => edge.source === currentNodeId);
+    console.log(`Outgoing edges from node ${currentNodeId}:`, outgoingEdges);
+
+    for (const edge of outgoingEdges) {
+      if (dfs(edge.target, targetNodeId)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  return dfs(targetNodeId, sourceNodeId);
+}
+
+// Example usage in your onConnect handler
 onConnect((params) => {
-  addEdges([params])
-})
+  const sourceType = params.sourceHandle?.split('-')[2];
+  const targetType = params.targetHandle?.split('-')[2];
+
+  if (sourceType !== targetType) {
+    console.warn('Cannot connect different types');
+    return;
+  }
+
+  const sourceNodeId = params.source;
+  const targetNodeId = params.target;
+
+  if (wouldCreateLoop(sourceNodeId, targetNodeId)) {
+    console.warn('Cannot create a loop in the graph');
+    return;
+  }
+
+  addEdges([params]);
+});
 </script>
 
 <template>
   <div class="dnd-flow" @drop="onDrop">
-    <VueFlow :nodes="nodes" :edges="edges" @dragover="onDragOver" @dragleave="onDragLeave" fit-view-on-init center>
+    <VueFlow :nodes="initNodes" :edges="initEdges" @dragover="onDragOver" @dragleave="onDragLeave" fit-view-on-init center>
       <MiniMap />
       <Controls />
 
@@ -65,7 +109,7 @@ onConnect((params) => {
       </DropzoneBackground>
       
       <!-- Add NodeToolbar directly to each node -->
-      <template v-for="node in nodes" :key="node.id">
+      <template v-for="node in initNodes" :key="node.id">
         <NodeToolbar v-if="node.data.toolbarVisible" :node-id="node.id" :position="Position.Top">
           <div class="vue-flow__node-toolbar">
             <button>👎</button>
@@ -107,13 +151,4 @@ onConnect((params) => {
   background: #2563eb;
 }
 
-.vue-flow__node-menu {
-  padding: 16px 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.vue-flow__node-menu.selected {
-  box-shadow: 0 0 0 2px #2563eb;
-}
 </style>
