@@ -2,7 +2,7 @@
 import {type Component, markRaw} from 'vue'
 import {Controls} from '@vue-flow/controls'
 import {MiniMap} from '@vue-flow/minimap'
-import {Position, useVueFlow, VueFlow} from '@vue-flow/core'
+import {Connection, ConnectionMode, Position, useVueFlow, VueFlow} from '@vue-flow/core'
 import {NodeToolbar} from '@vue-flow/node-toolbar' // Import NodeToolbar
 import DropzoneBackground from './DropzoneBackground.vue'
 import Sidebar from './SideBar.vue'
@@ -74,12 +74,12 @@ function wouldCreateLoop(sourceNodeId: string, targetNodeId: string) {
 }
 
 // Example usage in your onConnect handler
-onConnect((params) => {
-  const sourceType = params.sourceHandle?.split('-')[2];
-  const targetType = params.targetHandle?.split('-')[2];
+onConnect((params: Connection) => {
+  const sourceType = params.sourceHandle?.split("-")[1];
+  const targetType = params.targetHandle?.split("-")[1];
 
   if (sourceType !== targetType) {
-    console.warn('Cannot connect different types');
+    console.warn('Handle type mismatch (' + sourceType + ' vs ' + targetType + ')');
     return;
   }
 
@@ -97,7 +97,7 @@ onConnect((params) => {
 
 <template>
   <div class="dnd-flow" @drop="onDrop">
-    <VueFlow :nodes="initNodes" :edges="initEdges" @dragover="onDragOver" @dragleave="onDragLeave" fit-view-on-init center>
+    <VueFlow :nodes="initNodes" :edges="initEdges" :connection-mode="ConnectionMode.Strict" @dragover="onDragOver" @dragleave="onDragLeave" fit-view-on-init center>
       <MiniMap />
       <Controls />
 
@@ -107,7 +107,7 @@ onConnect((params) => {
       }">
         <p v-if="isDragOver">Drop here</p>
       </DropzoneBackground>
-      
+
       <!-- Add NodeToolbar directly to each node -->
       <template v-for="node in initNodes" :key="node.id">
         <NodeToolbar v-if="node.data.toolbarVisible" :node-id="node.id" :position="Position.Top">
@@ -150,5 +150,4 @@ onConnect((params) => {
 .vue-flow__node-toolbar button:hover {
   background: #2563eb;
 }
-
 </style>

@@ -17,16 +17,16 @@ export default {
 </script>
 
 <template>
-  <BaseEdge :path="path[0]" />
+  <BaseEdge :path="path[0]" class="animated-edge" />
 
   <EdgeLabelRenderer>
     <div
-      :style="{
+        :style="{
         pointerEvents: 'all',
         position: 'absolute',
         transform: `translate(-50%, -50%) translate(${path[1]}px,${path[2]}px)`,
       }"
-      class="nodrag nopan"
+        class="nodrag nopan"
     >
       <button class="edgebutton" @click="removeEdges(id)">×</button>
     </div>
@@ -41,5 +41,16 @@ export default {
 
 .edgebutton:hover {
   box-shadow: 0 0 0 2px pink, 0 0 0 4px #f05f75;
+}
+
+.animated-edge {
+  stroke-dasharray: 5;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -10;
+  }
 }
 </style>
