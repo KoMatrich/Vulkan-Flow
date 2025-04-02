@@ -2,7 +2,7 @@
   "name": "vue-flow-typescript-starter",
   "version": "0.0.0",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host 0.0.0.0",
     "build": "vite build"
   },
   "dependencies": {
