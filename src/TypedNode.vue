@@ -12,19 +12,20 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  inputs: {
-    type: Array as () => HandleData[],
-    default: () => [
-      {id: 'int-1', label: 'Input 1'},
-      {id: 'int-2', label: 'Input 2'},
-    ],
+  label: {
+    type: String,
+    default: 'Typed Node',
   },
-  outputs: {
-    type: Array as () => HandleData[],
-    default: () => [
-      {id: 'int-1', label: 'Output 1'},
-      {id: 'int-2', label: 'Output 2'},
-    ],
+  data: {
+    type: Object,
+    default: () => ({
+      inputs: {
+        type: Array as () => HandleData[],
+      },
+      outputs: {
+        type: Array as () => HandleData[],
+      }
+    }),
   },
 })
 </script>
@@ -33,7 +34,7 @@ const props = defineProps({
   <div class="custom-node">
     <div class="custom-node__header">
       <div class="handles-container">
-        <template v-for="(input) in inputs" :key="input.id">
+        <template v-for="(input) in data.inputs" :key="input.id">
           <div class="handle-wrapper">
             <Handle
                 :id="`${input.type}-${input.id}`"
@@ -48,11 +49,12 @@ const props = defineProps({
       </div>
     </div>
 
+    <p>{{ label }}</p>
     <p>Typed node {{ id }}</p>
 
     <div class="custom-node__footer">
       <div class="handles-container">
-        <template v-for="(output) in outputs" :key="output.id">
+        <template v-for="(output) in data.outputs" :key="output.id">
           <div class="handle-wrapper">
             <span class="handle-label">{{ output.label }}</span>
             <Handle
@@ -95,13 +97,13 @@ const props = defineProps({
 }
 
 .handle-wrapper {
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .handle-label {
   display: block;
-  font-size: 12px;
+  font-size: 6px;
   text-align: center;
 }
 </style>

@@ -2,13 +2,7 @@
 import {type Component, markRaw} from 'vue'
 import {Controls} from '@vue-flow/controls'
 import {MiniMap} from '@vue-flow/minimap'
-import {
-  Connection,
-  ConnectionMode,
-  useVueFlow,
-  VueFlow
-} from '@vue-flow/core'
-import {NodeToolbar} from '@vue-flow/node-toolbar' // Import NodeToolbar
+import {Connection, ConnectionMode, useVueFlow, VueFlow} from '@vue-flow/core'
 import DropzoneBackground from './DropzoneBackground.vue'
 import Sidebar from './SideBar.vue'
 import useDragAndDrop from './useDnD'
@@ -30,15 +24,17 @@ function wouldCreateLoop(sourceNodeId: string, targetNodeId: string) {
   console.log(`Going from ${sourceNodeId} to ${targetNodeId}`);
 
   if (sourceNodeId === targetNodeId) {
-    console.log('Source and target are the same, loop detected');
+    alert('Source and target are the same, loop detected');
     return true;
   }
 
   const visited: Set<string> = new Set();
 
-  function dfs(currentNodeId: string, targetNodeId: string): boolean {
+  function dfs(currentNodeId: string, targetNodeId: string, path: Array<string> = []): boolean {
+    path.push(currentNodeId);
+
     if (currentNodeId === targetNodeId) {
-      console.log(`Reached target node ${targetNodeId}, loop detected`);
+      alert(`Reached target node ${targetNodeId}, loop detected ${path.reverse().join(' -> ')}`);
       return true;
     }
 
@@ -52,7 +48,7 @@ function wouldCreateLoop(sourceNodeId: string, targetNodeId: string) {
     console.log(`Outgoing edges from node ${currentNodeId}:`, outgoingEdges);
 
     for (const edge of outgoingEdges) {
-      if (dfs(edge.target, targetNodeId)) {
+      if (dfs(edge.target, targetNodeId, path)) {
         return true;
       }
     }
