@@ -25,3 +25,8 @@ dist-ssr
 
 # NIX
 .direnv
+
+# Husky
+.husky/_
+
+.env

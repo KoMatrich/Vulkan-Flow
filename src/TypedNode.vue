@@ -1,32 +1,29 @@
 <script lang="ts" setup>
-import {Handle, Position} from '@vue-flow/core'
+import { Handle, Position } from '@vue-flow/core'
 
-type HandleData = {
+interface HandleData {
   id: string
   label: string
   type: string
 }
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-  label: {
-    type: String,
-    default: 'Typed Node',
-  },
-  data: {
-    type: Object,
-    default: () => ({
-      inputs: {
-        type: Array as () => HandleData[],
-      },
-      outputs: {
-        type: Array as () => HandleData[],
-      }
-    }),
-  },
+interface NodeData {
+  inputs?: HandleData[]
+  outputs?: HandleData[]
+}
+
+interface Props {
+  id: string
+  label?: string
+  data?: NodeData
+}
+
+const { label, data } = withDefaults(defineProps<Props>(), {
+  label: 'Typed Node',
+  data: () => ({
+    inputs: [],
+    outputs: [],
+  }),
 })
 </script>
 
@@ -34,14 +31,14 @@ const props = defineProps({
   <div class="custom-node">
     <div class="custom-node__header">
       <div class="handles-container">
-        <template v-for="(input) in data.inputs" :key="input.id">
+        <template v-for="input in data?.inputs || []" :key="input.id">
           <div class="handle-wrapper">
             <Handle
-                :id="`${input.type}-${input.id}`"
-                type="target"
-                :position="Position.Top"
-                :connectable="'single'"
-                style="position: relative; left: 50%;"
+              :id="`${input.type}-${input.id}`"
+              type="target"
+              :position="Position.Top"
+              connectable="single"
+              style="position: relative; left: 50%;"
             />
             <span class="handle-label">{{ input.label }}</span>
           </div>
@@ -54,14 +51,14 @@ const props = defineProps({
 
     <div class="custom-node__footer">
       <div class="handles-container">
-        <template v-for="(output) in data.outputs" :key="output.id">
+        <template v-for="output in data?.outputs || []" :key="output.id">
           <div class="handle-wrapper">
             <span class="handle-label">{{ output.label }}</span>
             <Handle
-                :id="`${output.type}-${output.id}`"
-                type="source"
-                :position="Position.Bottom"
-                style="position: relative; left: 50%;"
+              :id="`${output.type}-${output.id}`"
+              type="source"
+              :position="Position.Bottom"
+              style="position: relative; left: 50%;"
             />
           </div>
         </template>
