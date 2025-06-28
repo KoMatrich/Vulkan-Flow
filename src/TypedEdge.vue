@@ -26,7 +26,7 @@ export default {
 
 @keyframes dash {
   to {
-    stroke-dashoffset: 10;
+    stroke-dashoffset: -10;
   }
 }
 </style>

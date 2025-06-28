@@ -38,7 +38,7 @@ const props = defineProps({
           <div class="handle-wrapper">
             <Handle
                 :id="`${input.type}-${input.id}`"
-                type="source"
+                type="target"
                 :position="Position.Top"
                 :connectable="'single'"
                 style="position: relative; left: 50%;"
@@ -59,7 +59,7 @@ const props = defineProps({
             <span class="handle-label">{{ output.label }}</span>
             <Handle
                 :id="`${output.type}-${output.id}`"
-                type="target"
+                type="source"
                 :position="Position.Bottom"
                 style="position: relative; left: 50%;"
             />
