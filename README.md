@@ -131,12 +131,6 @@ Create a `.env` file in the root directory based on [`.env.example`](.env.exampl
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
-
-Currently, all rights are reserved.
-
-~~This project is licensed under the WIP License - see the `LICENSE` file for details.~~
-
 ## 🙏 Acknowledgments
 
 - [Vue Flow](https://vueflow.dev/) - The core flow library
